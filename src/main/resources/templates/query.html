@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="#" th:action="@{/search}" th:object="${request}" method="post">
+    <input type="text" th:field="*{level}" placeholder="Enter level">
+    <input type="text" th:field="*{message}" placeholder="Enter message">
+    <input type="text" th:field="*{resourceId}" placeholder="Enter level">
+    <input type="text" th:field="*{spanId}" placeholder="Enter level">
+    <input type="text" th:field="*{traceId}" placeholder="Enter level">
+    <input type="text" th:field="*{startTimestamp}" placeholder="Enter level">
+    <input type="text" th:field="*{endTimestamp}" placeholder="Enter level">
+    <input type="text" th:field="*{commit}" placeholder="Enter level">
+    <input type="text" th:field="*{parentResourceId}" placeholder="Enter level">
+
+    <button type="submit">Submit</button>
+</form>
+
+
+
+<!--</form>-->
+</body>
+</html>

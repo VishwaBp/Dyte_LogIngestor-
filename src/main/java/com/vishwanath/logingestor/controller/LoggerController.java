@@ -5,6 +5,8 @@ import com.vishwanath.logingestor.DTOS.RequestQueryLog;
 import com.vishwanath.logingestor.services.LoggerService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/")
 public class LoggerController {
@@ -21,7 +23,7 @@ public class LoggerController {
     }
 
     @GetMapping
-    public String queryLog(@RequestBody RequestQueryLog logrRquest){
+    public List<RequestLog> queryLog(@RequestBody RequestQueryLog logrRquest){
         return logservice.queryName(logrRquest);
     }
 

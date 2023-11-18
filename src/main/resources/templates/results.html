@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head >
+<body>
+
+<table class="table table-hover table-responsive-xl">
+  <thead class="thead-light">
+  <th> Level</th>
+  <th> Message</th>
+  <th> Resource Id</th>
+  <th> Timestamp</th>
+  <th> Trace Id</th>
+  <th> SpanId</th>
+  <th> Commit</th>
+  <th> Parent Resource Id</th>
+
+  </thead>
+  <tbody>
+  <tr th:each = "logs : ${Logs}">
+  <td>[[${logs.level}]]</td>
+  <td>[[${logs.message}]]</td>
+  <td>[[${logs.resourceId}]]</td>
+  <td>[[${logs.timestamp}]]</td>
+  <td>[[${logs.traceId}]]</td>
+  <td>[[${logs.spanId}]]</td>
+  <td>[[${logs.commit}]]</td>
+  <td>[[${logs.metadata.parentResourceId}]]</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<!--</form>-->
+</body>
+</html>

@@ -1,21 +1,15 @@
 package com.vishwanath.logingestor.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vishwanath.logingestor.DTOS.RequestLog;
 import com.vishwanath.logingestor.DTOS.RequestQueryLog;
-import com.vishwanath.logingestor.DTOS.nameDto;
 import com.vishwanath.logingestor.repository.LogRepo;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
@@ -45,7 +39,7 @@ public class LoggerService {
            return "error occured";
         }
     }
-    public String queryName(RequestQueryLog log){
+    public List<RequestLog> queryName(RequestQueryLog log){
          try{
              Query query =  new Query();
              if (log.getLevel() != null && !log.getLevel().isEmpty()) {
@@ -59,13 +53,13 @@ public class LoggerService {
                  query.addCriteria(Criteria.where("resourceId").is(log.getResourceId()));
              }
 
-             if (log.getStartTimestamp() != null && log.getEndTimestamp() != null) {
+             if (log.getStartTimestamp() != null && log.getEndTimestamp() != null &&  !log.getStartTimestamp().isEmpty() && !log.getEndTimestamp().isEmpty()) {
                  query.addCriteria(Criteria.where("timestamp")
                          .gte(log.getStartTimestamp())
                          .lte(log.getEndTimestamp()));
-             } else if (log.getStartTimestamp() != null) {
+             } else if (log.getStartTimestamp() != null && !log.getStartTimestamp().isEmpty()) {
                  query.addCriteria(Criteria.where("timestamp").gte(log.getStartTimestamp()));
-             } else if (log.getEndTimestamp() != null) {
+             } else if (log.getEndTimestamp() != null && !log.getEndTimestamp().isEmpty()) {
                  query.addCriteria(Criteria.where("timestamp").lte(log.getEndTimestamp()));
              }
 
@@ -87,13 +81,13 @@ public class LoggerService {
 
 
 
-           return  objMap.writeValueAsString(mongoTemplate.find(query,RequestLog.class));
+           return  mongoTemplate.find(query,RequestLog.class);
 
 //            List<RequestLog> nameDtoList =  logrepo.findByName("vishwa");
 //            return objMap.writeValueAsString(nameDtoList);
          }
          catch(Exception e){
-            return "Exception occured";
+            return null;
 
          }
     }
