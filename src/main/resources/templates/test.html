@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Log Query UI Interface </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head >
+<body>
+<form action="#" th:action="@{/search1}" th:object="${request}" method="post">
+    <section class="row">
+        <section class="col-4">
+            <div  class="form-group">
+                <label>Level</label>
+                <input  class="form-control" type="text" th:field="*{level}" placeholder="Enter level">
+            </div>
+        </section>
+
+
+        <section class="col-4">
+            <div class = "form-group">
+                <label>Message</label>
+                <input class="form-control" type="text" th:field="*{message}" placeholder="Enter message">
+            </div></section>
+        <section class="col-4"><input type="text" th:field="*{resourceId}" placeholder="Enter level"></section>
+    </section>
+    <section class="row">
+        <!--        <section class="col-4"><input type="text" th:field="*{resourceId}" placeholder="Enter level"></section>-->
+        <section class="col-4"><input type="text" th:field="*{spanId}" placeholder="Enter level"></section>
+        <section class="col-4"><input type="text" th:field="*{traceId}" placeholder="Enter level"></section>
+    </section>
+    <section class="row">
+        <section class="col-4"><input type="datetime-local" th:field="*{startTimestamp}" placeholder="Enter level"></section>
+        <section class="col-4"><input type="datetime-local" th:field="*{endTimestamp}" placeholder="Enter level"></section>
+    </section>
+    <section class="row">
+        <section class="col-4"><input type="text" th:field="*{commit}" placeholder="Enter level"></section>
+        <section class="col-4"><input type="text" th:field="*{parentResourceId}" placeholder="Enter level"></section>
+    </section>
+    <section class="row">
+        <section class="col-12"><button type="submit" class="btn btn-primary">Submit</button></section>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
+<div th:if="${Logs.size == 0 && formSubmitted}">
+    No Records Found
+</div>
+<div th:unless="${Logs.size ==0}">
+<table class="table table-hover table-responsive-xl">
+    <thead class="thead-light">
+    <th> Level</th>
+    <th> Message</th>
+    <th> Resource Id</th>
+    <th> Timestamp</th>
+    <th> Trace Id</th>
+    <th> SpanId</th>
+    <th> Commit</th>
+    <th> Parent Resource Id</th>
+
+    </thead>
+    <tbody>
+    <tr th:each = "logs : ${Logs}">
+        <td>[[${logs.level}]]</td>
+        <td>[[${logs.message}]]</td>
+        <td>[[${logs.resourceId}]]</td>
+        <td>[[${logs.timestamp}]]</td>
+        <td>[[${logs.traceId}]]</td>
+        <td>[[${logs.spanId}]]</td>
+        <td>[[${logs.commit}]]</td>
+        <td>[[${logs.metadata.parentResourceId}]]</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+
+<!--</form>-->
+</body>
+</html>

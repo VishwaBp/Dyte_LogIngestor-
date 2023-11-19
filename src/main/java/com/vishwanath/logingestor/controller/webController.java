@@ -33,9 +33,28 @@ model.addAttribute("request", new RequestQueryLog());
     @PostMapping("/search")
     public String  searchQuery(Model model ,@ModelAttribute("Query")RequestQueryLog requestQueryLog){
          List<RequestLog>  requestLogs = logservice.queryName(requestQueryLog);
-        List<String> asd = new ArrayList<>();
-        asd.add(("test"));
+
         model.addAttribute("Logs",requestLogs);
          return "results";
+    }
+
+
+    @RequestMapping(value = "/query1")
+    public String returnQuery1(Model model){
+
+        List<RequestLog> requestLogs = new ArrayList<>();
+        model.addAttribute("Logs",requestLogs);
+        model.addAttribute("request", new RequestQueryLog());
+        model.addAttribute("formSubmitted", false);
+        return "test";
+    }
+
+    @PostMapping("/search1")
+    public String  searchQuery1(Model model ,@ModelAttribute("Query")RequestQueryLog requestQueryLog){
+        List<RequestLog>  requestLogs = logservice.queryName(requestQueryLog);
+        model.addAttribute("request", requestQueryLog);
+        model.addAttribute("Logs",requestLogs);
+        model.addAttribute("formSubmitted", true);
+        return "test";
     }
 }

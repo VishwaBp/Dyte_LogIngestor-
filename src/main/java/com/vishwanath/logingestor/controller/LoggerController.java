@@ -17,12 +17,12 @@ public class LoggerController {
         this.logservice = logservice;
     }
 
-    @PostMapping
+    @PostMapping("saveLogs")
     public String  injectLog(@RequestBody RequestLog logrRquest){
        return  logservice.insertLog(logrRquest);
     }
 
-    @GetMapping
+    @GetMapping("searchLogs")
     public List<RequestLog> queryLog(@RequestBody RequestQueryLog logrRquest){
         return logservice.queryName(logrRquest);
     }

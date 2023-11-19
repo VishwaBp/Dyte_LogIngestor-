@@ -1,6 +1,5 @@
 package com.vishwanath.logingestor.DTOS;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;

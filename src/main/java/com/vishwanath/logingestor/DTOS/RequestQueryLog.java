@@ -2,8 +2,13 @@ package com.vishwanath.logingestor.DTOS;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Data
+@Getter
+@Setter
+@Document("Log")
 public class RequestQueryLog {
     private String level;
     private String message;
